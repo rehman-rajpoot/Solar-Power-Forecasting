@@ -6,7 +6,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-# Load environment variables if .env exists
+# Environment variables load kiye (.env file se)
 load_dotenv()
 
 BASE_URL = os.getenv("OPEN_METEO_API_URL", "https://archive-api.open-meteo.com/v1/archive")
@@ -53,12 +53,12 @@ if __name__ == "__main__":
     merged.to_csv("data/plant1_merged.csv", index=False)
     print("Merged rows:", merged.shape[0])
 
-    # Task 3.4: teen din chunein aur peaks compare karein
+    # Task 3.4: Pehle 3 din select kiye aur sensor vs Open-Meteo peaks compare kia
     merged["date"] = merged["datetime"].dt.date
     merged["hour"] = merged["datetime"].dt.hour
 
     unique_dates = sorted(merged["date"].unique())
-    chosen_days = unique_dates[:3]  # pehle 3 din
+    chosen_days = unique_dates[:3]  # Initial 3 days select kiye
 
     Path("results").mkdir(exist_ok=True)
 

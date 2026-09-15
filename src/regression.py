@@ -82,7 +82,7 @@ def rmse(X, y, theta):
     return np.sqrt(2 * cost(X, y, theta) / m)
 
 def predict_clipped(X, theta):
-    """Predict karo, phir negative values ko 0 kar do."""
+    """Predictions calculate ki aur physical constraint apply karne ke liye negative values ko 0 pe clip kia."""
     preds = hypothesis(X, theta)
     return np.clip(preds, a_min=0, a_max=None)
 
@@ -133,18 +133,19 @@ if __name__ == "__main__":
 
     plt.figure()
     plt.scatter(test_hours, residuals)
-    plt.axhline(y=0, color="red", linestyle="--")  # zero line, reference ke liye
+    plt.axhline(y=0, color="red", linestyle="--")  # Zero error reference line draw kia
     plt.xlabel("Hour of Day")
     plt.ylabel("Residual (actual - predicted) kW")
     plt.title("Residuals vs Hour of Day (Set A, Normal Equation)")
     plt.savefig("results/plot8_residuals_vs_hour.png")
     plt.show()
 
-    # Har hour ka average residual bhi dekhte hain (pattern dhoondne ke liye)
+    # Diurnal pattern check karne ke liye hour-level average residual compute kia
     residual_df = pd.DataFrame({"hour": test_hours, "residual": residuals})
     avg_residual_by_hour = residual_df.groupby("hour")["residual"].mean()
     print("\nAverage residual by hour:\n", avg_residual_by_hour)
-        # Task 6 ke liye: Set B, Normal Equation ke weights aur scaling stats save karo
+    
+    # Task 6 deployment ke liye: Set B Normal Equation weights aur scaling parameters save kia
     train_scaled_B, test_scaled_B, means_B, stds_B = scale_features(train_df, test_df, SET_B_FEATURES)
     X_train_B = build_X(train_scaled_B)
     theta_normal_B = fit_normal(X_train_B, y_train)

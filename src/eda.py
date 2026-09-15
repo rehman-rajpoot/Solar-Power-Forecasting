@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Step 1: hourly data load karo
+# Step 1: Preprocessed hourly dataset load kia
 df = pd.read_csv("data/plant1_hourly.csv")
 df["datetime"] = pd.to_datetime(df["datetime"])
 
@@ -33,7 +33,7 @@ plt.title("AC Power vs DC Power")
 plt.savefig("results/plot3_ac_vs_dc.png")
 plt.show()
 
-# Ratio check karte hain (report mein likhne ke liye)
+# Inverter conversion efficiency (AC/DC ratio) calculate kia
 ratio = (df["ac_power"] / df["dc_power"]).mean()
 print("Average AC/DC ratio:", ratio)
 
