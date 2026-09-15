@@ -15,6 +15,7 @@ env/
 .idea/
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Colab / Jupyter runtime
 .ipynb_checkpoints/

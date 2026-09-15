@@ -157,3 +157,22 @@ if __name__ == "__main__":
 
     print("\nSet B theta saved:", theta_normal_B)
     print("Saved to results/theta_set_b.npy, means_set_b.csv, stds_set_b.csv")
+
+    # Figure 5: Test week ke liye actual vs predicted AC power plot kia (Normal equation: Set A & Set B)
+    preds_test_B = predict_clipped(X_test_B, theta_normal_B)
+
+    plt.figure(figsize=(12, 5))
+    plt.plot(test_df["datetime"], y_test, label="Actual AC Power", color="black", linewidth=1.5)
+    plt.plot(test_df["datetime"], preds_test_A, label="Predicted (Set A: Sensors)", color="#1f77b4", linestyle="--", linewidth=1.2)
+    plt.plot(test_df["datetime"], preds_test_B, label="Predicted (Set B: Open-Meteo)", color="#d62728", linestyle=":", linewidth=1.2)
+    plt.xlabel("Date & Time")
+    plt.ylabel("AC Power (kW)")
+    plt.title("Actual vs Predicted AC Power on Test Week (June 11 - June 17, 2020)")
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.xticks(rotation=25)
+    plt.tight_layout()
+    plt.savefig("results/plot9_actual_vs_predicted_test_week.png")
+    plt.savefig("results/fig5_actual_vs_predicted_test_week.png")
+    plt.show()
+    print("Figure 5 saved to results/plot9_actual_vs_predicted_test_week.png")
