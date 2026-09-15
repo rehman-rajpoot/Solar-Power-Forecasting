@@ -3,7 +3,7 @@
 ### Applied Machine Learning (CS) — Assignment 1
 **Domain:** Solar Photovoltaic (PV) Energy Forecasting  
 **Dataset:** Kaggle Solar Power Generation (Plant 1 & Plant 2) + Open-Meteo Historical Archive API  
-
+**Team Members:** Abd-ul-Rehman (@rehman-rajpoot) && Rizwana Mubarak (@CHRizwana)
 ---
 
 ## 📌 Project Overview
@@ -107,3 +107,6 @@ python src/regression.py
   - **Stochastic Gradient Descent:** Per-sample updates ($\alpha = 0.01$, 50 epochs)
 - **Feature Scaling:** Z-Score normalization computed strictly on the training partition (May 15 – June 10, 2020) and applied to test (June 11 – June 17, 2020) to prevent data leakage.
 - **Physical Non-negativity:** Predictions are bounded by $\max(0, \hat{y})$ to enforce physical realism for nocturnal hours.
+## 📖 In-Depth Project Walkthrough
+Read our published article detailing the mathematical formulation, Open-Meteo integration, and empirical findings:
+👉 [Read the Full Article on Medium](https://medium.com/@chmubarak44/can-free-weather-data-replace-solar-sensors-0961e61bbbd9)
